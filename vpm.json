@@ -1,6 +1,5 @@
 {
-  "name": "com.tanutanu.import-history",
-  "id": "com.tanutanu.import-history.vpm",
+  "name": "tanutanuvrc-repo",
   "author": "tanutanu",
   "url": "https://tanutanuvrc.github.io/tanutanuvrcgit-1/vpm.json",
   "packages": {
@@ -10,8 +9,9 @@
           "name": "com.tanutanu.import-history",
           "version": "1.0.0",
           "displayName": "UnityPackage Import History Viewer",
-          "description": "インポート履歴を記録し、展開先フォルダへ素早くアクセスできるエディタツールです。",
+          "description": "インポート履歴を記録するツールです。",
           "unity": "2022.3",
+          "vpmDependencies": {},
           "url": "https://github.com/tanutanuvrc/tanutanuvrcgit-1/archive/refs/tags/v1.0.0.zip"
         }
       }
