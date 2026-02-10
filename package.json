@@ -4,7 +4,6 @@
     "version": "1.0.0",
     "author": {
         "name": "tanutanu",
-        "url": "https://github.com/あなたのユーザー名"
     },
     "unity": "2022.3",
     "description": "インポートされたUnityPackageの履歴を記録し、展開先フォルダへ素早くアクセスできるようにするエディタツールです。",
