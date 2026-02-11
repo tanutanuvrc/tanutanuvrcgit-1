@@ -11,7 +11,7 @@
       "com.vrchat.avatars" : ">=3.7.0"
     },
     "legacyFiles": {
-	"Assets\\たぬたぬ\\Unityパッケージ履歴.cs": "",
-        "Assets\\たぬたぬ\\Unityパッケージ履歴.cs.meta": ""
+	"Assets/たぬたぬ/Unityパッケージ履歴.cs": "",
+    	"Assets/たぬたぬ/Unityパッケージ履歴.cs.meta": ""
     }
 }
