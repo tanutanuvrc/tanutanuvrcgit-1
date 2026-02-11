@@ -63,7 +63,6 @@ public class ImportHistoryWindow : EditorWindow
             using (var scroll = new EditorGUILayout.ScrollViewScope(scrollPos))
             {
                 scrollPos = scroll.scrollPosition;
-                // 描画中にリスト操作を行うため、逆順で回すか ExitGUI を活用する
                 for (int i = 0; i < PackageImportLogger.history.Count; i++)
                 {
                     DrawRecord(PackageImportLogger.history[i], i);
@@ -95,7 +94,6 @@ public class ImportHistoryWindow : EditorWindow
 
             EditorGUILayout.Space(2);
 
-            // ルートフォルダごとに表示。削除操作が含まれるため、逆順または一時リストで処理
             var paths = record.rootFolderPaths;
             for (int j = 0; j < paths.Count; j++)
             {
@@ -112,7 +110,6 @@ public class ImportHistoryWindow : EditorWindow
                         var target = GetTargetPath(root);
                         if (target == null)
                         {
-                            // 見つからない場合の個別削除確認
                             if (EditorUtility.DisplayDialog(
                                 "参照先が見つかりません",
                                 $"対象のフォルダやアセットが見つかりませんでした。\n{root}\nを履歴から削除しますか？",
@@ -130,7 +127,6 @@ public class ImportHistoryWindow : EditorWindow
                         }
                         else
                         {
-                            //中身を優先してPing
                             PingFirstChild(target);
                         }
                     }
@@ -161,9 +157,6 @@ public class ImportHistoryWindow : EditorWindow
         EditorGUILayout.Space(8);
     }
 
-    /// <summary>
-    /// パスが存在するか判定する
-    /// </summary>
     private string GetTargetPath(string path)
     {
         if (AssetDatabase.IsValidFolder(path) || AssetDatabase.LoadMainAssetAtPath(path) != null)
@@ -173,12 +166,8 @@ public class ImportHistoryWindow : EditorWindow
         return null;
     }
 
-    /// <summary>
-    /// フォルダの中にある最初のアセットをPingする。空ならフォルダ自身をPingする。
-    /// </summary>
     private void PingFirstChild(string folderPath)
     {
-        // フォルダ内のアセットを検索（自身を含む）
         string[] guids = AssetDatabase.FindAssets("", new[] { folderPath });
 
         if (guids != null && guids.Length > 0)
@@ -186,7 +175,6 @@ public class ImportHistoryWindow : EditorWindow
             foreach (var guid in guids)
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
-                // フォルダ自身でない最初の要素を見つける
                 if (path != folderPath)
                 {
                     var childObj = AssetDatabase.LoadMainAssetAtPath(path);
@@ -200,7 +188,6 @@ public class ImportHistoryWindow : EditorWindow
             }
         }
 
-        // 子要素がない場合はフォルダ自体をPing
         var folderObj = AssetDatabase.LoadMainAssetAtPath(folderPath);
         if (folderObj != null)
         {
@@ -251,6 +238,7 @@ public class HistoryContainer
 public static class PackageImportLogger
 {
     private const string HistoryJsonFileName = "PackageImportHistory.json";
+    private const string RootFolderName = "Assets/たぬたぬ"; // 除外用ルート名
     private const string ForceFolder = "Assets/たぬたぬ/インポート履歴";
     private static string currentPackageName;
     private static HashSet<string> assetPathSet = new HashSet<string>();
@@ -298,6 +286,10 @@ public static class PackageImportLogger
     {
         if (string.IsNullOrEmpty(assetPath)) return null;
         assetPath = assetPath.Replace('\\', '/');
+
+        // --- 追加：自身の管理用フォルダ「Assets/たぬたぬ」以下のパスは無視する ---
+        if (assetPath.Contains(RootFolderName)) return null;
+
         if (!assetPath.StartsWith("Assets/")) return null;
         var parts = assetPath.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
         return parts.Length >= 2 ? $"Assets/{parts[1]}" : null;
