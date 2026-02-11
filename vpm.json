@@ -11,9 +11,7 @@
           "displayName": "UnityPackage Import History Viewer",
           "description": "インポート履歴を記録するツールです。",
           "unity": "2022.3",
-          "vpmDependencies": {
-            "com.vrchat.avatars": ">=3.7.0"
-          },
+          "vpmDependencies" : {},
           "url": "https://github.com/tanutanuvrc/tanutanuvrcgit-1/releases/download/v1.0.0/tanutanuvrcgit-1-1.0.0.zip"
         }
       }

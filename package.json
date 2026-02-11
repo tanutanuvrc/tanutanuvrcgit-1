@@ -7,11 +7,9 @@
     },
     "unity": "2022.3",
     "description": "インポートされたUnityPackageの履歴を記録し、展開先フォルダへ素早くアクセスできるようにするエディタツールです。",
-    "vpmDependencies" : {
-      "com.vrchat.avatars" : ">=3.7.0"
-    },
+    "vpmDependencies" : {},
     "legacyFiles": {
-	"Assets/たぬたぬ/Unityパッケージ履歴.cs": "",
-    	"Assets/たぬたぬ/Unityパッケージ履歴.cs.meta": ""
+	"Assets//たぬたぬ//Unityパッケージ履歴.cs": "",
+    	"Assets//たぬたぬ//Unityパッケージ履歴.cs.meta": ""
     }
 }
