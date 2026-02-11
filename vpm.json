@@ -8,7 +8,7 @@
         "1.0.0": {
           "name": "com.tanutanu.import-history",
           "version": "1.0.0",
-          "displayName": "UnityPackageインポート履歴",
+          "displayName": "インポートした衣装のフォルダを開くツール",
           "description": "インポート履歴を記録するツールです。",
           "unity": "2022.3",
           "vpmDependencies" : {},
